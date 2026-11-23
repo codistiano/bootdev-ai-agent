@@ -24,6 +24,10 @@ response = client.chat.completions.create(
 
 def main():
     print("Hello from ai-agent!")
+    if response.usage == None:
+        raise RuntimeError("No usage info was sent!")
+    print(f"Prompt tokens: {response.usage.prompt_tokens}")
+    print(f"Response tokens: {response.usage.completion_tokens}")
     print(response.choices[0].message.content)
 
 
